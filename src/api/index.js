@@ -1,4 +1,6 @@
 import axios from 'axios'
+import Vue from 'vue'
+
 let instance = axios.create({
   baseURL: 'http://localhost:8080'
 })
@@ -15,5 +17,4 @@ instance.interceptors.response.use(function (res) {
   return Promise.reject(err)
 })
 
-module.exports = instance
-
+Vue.prototype.$http = instance
