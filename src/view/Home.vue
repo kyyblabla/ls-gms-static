@@ -7,7 +7,7 @@
           <el-button icon="plus" @click="$refs['addStockDialog'].open()">入库</el-button>
         </el-form-item>
         <el-form-item label="">
-          <el-input v-model="params.key" placeholder="请输入内容" @keyup.enter="search()"></el-input>
+          <el-input v-model="params.key" placeholder="请输入关键字" @keyup.enter="search()"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" icon="search" @click="search()">搜索</el-button>
@@ -57,7 +57,8 @@
           prop="effectiveDate"
           label="过期时间"
           type="datetime"
-          width="120">
+          :formatter="dateFormat"
+          width="180">
         </el-table-column>
         <el-table-column
           label="操作">
@@ -160,6 +161,7 @@
 </template>
 
 <script>
+  import moment from 'moment'
   export default {
     name: 'hello',
     data () {
@@ -235,6 +237,13 @@
         }).then(({data}) => {
           this.stockList = data
         })
+      },
+      dateFormat (row, column) {
+        let date = row[column.property]
+        if (date === undefined) {
+          return ''
+        }
+        return moment(date).format('YYYY-MM-DD HH:mm:ss')
       }
     },
     mounted () {
