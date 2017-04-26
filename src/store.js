@@ -11,19 +11,21 @@ const state = {
 }
 
 const getters = {
-  toastType: state => state.toastType,
-  showToast: state => state.showToast,
-  toastMsg: state => state.toastMsg
+  toast: {
+    toastType: state => state.toastType,
+    showToast: state => state.showToast,
+    toastMsg: state => state.toastMsg
+  }
 }
 
 const actions = {
-  showToast ({commit}, {show, type, message}) {
-    commit(COM_SHOW_TOAST, show, type, message)
+  showToast ({commit}, action) {
+    commit(COM_SHOW_TOAST, action)
   }
 }
 
 const mutations = {
-  [COM_SHOW_TOAST] (state, show, type, message) {
+  [COM_SHOW_TOAST] (state, {show, type, message}) {
     state.showToast = show
     state.type = type
     state.message = message

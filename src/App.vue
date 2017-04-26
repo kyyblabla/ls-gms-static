@@ -5,13 +5,17 @@
 </template>
 
 <script>
-export default {
-  name: 'app'
-}
+  import {mapGetters} from 'vuex'
+  export default {
+    name: 'app',
+    computed: mapGetters([
+      'toast'
+    ])
+  }
 </script>
 
 <style>
-#app {
+  #app {
 
-}
+  }
 </style>
