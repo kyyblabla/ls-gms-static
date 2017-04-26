@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Vue from 'vue'
+// import store  from '@/store'
 
 let instance = axios.create({
   baseURL: 'http://localhost:8080'
@@ -14,6 +15,7 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (res) {
   return res
 }, function (err) {
+  // store.dispatch('showToast', true)
   return Promise.reject(err)
 })
 
