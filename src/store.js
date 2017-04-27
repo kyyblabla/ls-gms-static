@@ -6,29 +6,32 @@ const COM_SHOW_TOAST = 'COM_SHOW_TOAST'
 
 const state = {
   showToast: false,
-  toastType: 'success',
+  toastType: 'info',
   toastMsg: ''
 }
 
 const getters = {
-  toast: {
-    toastType: state => state.toastType,
-    showToast: state => state.showToast,
-    toastMsg: state => state.toastMsg
-  }
+  toastType: state => state.toastType,
+  showToast: state => state.showToast,
+  toastMsg: state => state.toastMsg
 }
 
 const actions = {
   showToast ({commit}, action) {
     commit(COM_SHOW_TOAST, action)
+    setTimeout(() => {
+      commit(COM_SHOW_TOAST, {
+        show: false
+      })
+    }, 1)
   }
 }
 
 const mutations = {
   [COM_SHOW_TOAST] (state, {show, type, message}) {
     state.showToast = show
-    state.type = type
-    state.message = message
+    state.toastType = type
+    state.toastMsg = message
   }
 }
 

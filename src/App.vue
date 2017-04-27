@@ -9,8 +9,22 @@
   export default {
     name: 'app',
     computed: mapGetters([
-      'toast'
-    ])
+      'toastType',
+      'showToast',
+      'toastMsg'
+    ]),
+    watch: {
+      showToast (newVal) {
+        if (newVal) {
+          this.$message({
+            message: this.toastMsg,
+            type: this.toastType,
+            showClose: true
+          })
+        }
+      }
+    },
+    components: {}
   }
 </script>
 
